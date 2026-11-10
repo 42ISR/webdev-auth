@@ -9,10 +9,12 @@ const MessageCard = ({ likes, content, username, createdAt, id }) => {
         getMessages()
     }
     const handleLike = async () => {
-
+        api.likeMessage(id)
+        getMessages()
     }
     const handleReport = async () => {
-
+        api.reportMessage(id)
+        getMessages()
     }
     return (
         <div className="message-card">
@@ -22,15 +24,15 @@ const MessageCard = ({ likes, content, username, createdAt, id }) => {
                 <span className="message-time">{createdAt}</span>
             </div>
             <div className="message-actions">
-                <button className="action-button">
+                <button onClick={handleLike} className="action-button">
                     <span>{likes} 💗🤍</span>
                     <span>Нравится</span>
                 </button>
-                <button className="action-button">
+                <button onClick={handleReport} className="action-button">
                     <span>🚩</span>
                     <span>Пожаловаться</span>
                 </button>
-                <button className="action-button delete">
+                <button onClick={handleDelete} className="action-button delete">
                     <span>❌</span>
                     <span>Удалить</span>
                 </button>
